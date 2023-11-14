@@ -13,13 +13,16 @@ public class HomeController {
         return "안녕하세요";
     }
 
-    @GetMapping("/about")
+    @GetMapping("/calc1")
     @ResponseBody
     //이 함수의 리턴 값을 그대로 브라우저에 출력하라는 의미
-    String showAbout(){
-        return "개발자 커뮤니티";
+    String showCalc1(int a, int b){
+        return "계산결과 : %d".formatted(a+b);
     }
-
-
+    @GetMapping("/calc2")
+    @ResponseBody
+    String showCalc2(Integer a, Integer b){
+        return "a : " + a + " b : " + b;
+    }
 
 }
