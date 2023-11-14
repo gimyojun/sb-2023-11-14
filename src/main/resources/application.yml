@@ -1,3 +1,10 @@
 
 server:
   port: 8020
+
+
+
+#  운영일때는 꺼야함
+spring:
+  thymeleaf:
+    cache: false
