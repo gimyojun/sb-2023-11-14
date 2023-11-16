@@ -6,15 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service // 저는 단 한번만 생성되고, 그 이후에는 재사용되는 객체입니다.
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
-    /*
-    이부분에 생성자 주입된 부분이 @RequiredArgsConstructor로 인해 생략 되었다.
-    */
     public Article write(String title, String body) {
         Article article = new Article(title, body);
 
@@ -29,5 +27,19 @@ public class ArticleService {
 
     public List<Article> findAll() {
         return articleRepository.findAll();
+    }
+
+    public Optional<Article> findById(long id) {
+        return articleRepository.findById(id);
+    }
+
+    public void delete(long id) {
+        articleRepository.delete(id);
+    }
+
+    public void modify(long id, String title, String body) {
+        Article article = findById(id).get();
+        article.setTitle(title);
+        article.setBody(body);
     }
 }
